@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="genre">
+    <div class="genre" *ngFor="let genre of genres">
+      <button
+        class="btn btn-outline-primary genreBtn"
+        routerLink="/genres"
+        (click)="showGenres(genre.id, genre.name)"
+      >
+        {{ genre.name }}
+      </button>
+    </div>
+  </div>
+
+  <div class="movies">
+    <div class="btns">
+      <button class="btn btn-outline-primary" routerLink="/upcoming">
+        Upcoming
+      </button>
+      <button class="btn btn-outline-primary" routerLink="/nowPlaying">
+        Now playing
+      </button>
+      <button class="btn btn-outline-primary" routerLink="/topRated">
+        Top rated
+      </button>
+    </div>
+    <div class="allMovies">
+      <h3>Popular movies</h3>
+      <div class="cont">
+        <div class="displayMovie">
+          <div class="card" *ngFor="let item of popularMovie">
+            <div routerLink="/movie-detail" (click)="showDetails(item)">
+              <div class="circle">
+                <circle-progress
+                  [percent]="item.vote_average * 10"
+                ></circle-progress>
+              </div>
+
+              <img
+                class="movieImage"
+                *ngIf="item.poster_path"
+                src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{
+                  item.poster_path
+                }} "
+                alt=""
+              />
+              <img
+                class="movieImage noImage"
+                *ngIf="!item.poster_path"
+                src="assets/default.jfif"
+              />
+              <p class="title">{{ item.title }}</p>
+              <p>{{ item.release_date | date: "mediumDate" }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="allMoviesBtn">
+  <button class="btnAll btn btn-outline-primary" routerLink="/popular">
+    SEE ALL POPULAR
+  </button>
+</div>

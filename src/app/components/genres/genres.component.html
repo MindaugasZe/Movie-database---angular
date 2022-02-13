@@ -1,0 +1,52 @@
+<div class="allMovies">
+  <div class="container">
+    <h3>{{ movieService.name}} movies</h3>
+
+    <div class="displayMovie">
+      <div
+        class="card"
+        *ngFor="
+          let item of genre
+            | paginate
+              : {
+                  itemsPerPage: 10,
+                  currentPage: page,
+                  totalItems: totalLenght
+                }
+        "
+      >
+    
+        <div routerLink="/movie-detail" (click)="showDetails(item)">
+          <div class="circle">
+            <circle-progress
+              [percent]="item.vote_average * 10"
+            ></circle-progress>
+          </div>
+
+          <img
+            class="movieImage"
+            *ngIf="item.poster_path"
+            src="https://image.tmdb.org/t/p/w185_and_h278_bestv2/{{
+              item.poster_path
+            }} "
+            alt=""
+          />
+          <img
+            class="movieImage noImage"
+            *ngIf="!item.poster_path"
+            src="assets/default.jfif"
+          />
+          <p class="title">{{ item.title }}</p>
+          <p>{{ item.release_date | date: "mediumDate" }}</p>
+          <h3>{{item.name}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pagination">
+    <pagination-controls
+      class="my-pagination text-center"
+      (pageChange)="changePage($event)"
+    ></pagination-controls>
+  </div>
+</div>

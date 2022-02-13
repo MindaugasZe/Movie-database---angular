@@ -1,0 +1,27 @@
+<div class="top-container">
+<div>
+    <a routerLink = '/'><img class="logo" src="../assets/logo.svg" alt=""></a>
+  
+  </div>
+    <div class="form">
+        <form>
+            <div class="row">
+              
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="text" class="form-control " placeholder="Search for movies..." [(ngModel)]="searchStr"
+                                name="searchStr" (keyup.enter)="searchMovies()">
+                            <span class="input-group-btn">
+                                <button class="btn btn-primary btnDesign" type="submit" [disabled] ='!searchStr' routerLink ='/search'
+                                 (click)="searchMovies()">Go!</button>
+                            </span>
+                        </div>
+                    </div>
+               
+            </div>    
+        </form>
+        
+    </div>
+  </div>  
+
+  
